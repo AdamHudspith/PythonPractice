@@ -4,7 +4,7 @@
 
 DEBUG:root:Attempting to establish connection with the following details ... 
 DEBUG:root:Database User : SA
-DEBUG:root:Database Password : Zaq!xsw2
+DEBUG:root:Database Password : Password
 DEBUG:root:Database Host/IP Address : 127.0.0.1
 DEBUG:root:Database schema : sakila
 INFO:root:Connection has been established at time 2021-02-06 16:45:52.456293
