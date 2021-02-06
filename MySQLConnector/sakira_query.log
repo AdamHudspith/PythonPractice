@@ -1,0 +1,25 @@
+Examples of the log entries that can be generated : 
+---------------------------------------------------
+
+example of Debug log level : 
+
+    DEBUG:root:Attempting to establish connection with the following details ... 
+    DEBUG:root:Database User : SA
+    DEBUG:root:Database Password : Password
+    DEBUG:root:Database Host/IP Address : 127.0.0.1
+    DEBUG:root:Database schema : sakila
+    INFO:root:Connection has been established at time 2021-02-06 14:13:27.377708
+    DEBUG:root:Connection  -> <mysql.connector.connection_cext.CMySQLConnection object at 0x0000024CDD080D48>
+    DEBUG:root:Query to be executed -> select * from sakila.actor LIMIT 0, 1000
+    INFO:root:Query has been run successfully at 2021-02-06 14:13:27.377708
+    INFO:root:Connection has been closed successfully at 2021-02-06 14:13:27.414742
+
+example of a Info log level : 
+
+    INFO:root:Connection has been established at time 2021-02-06 14:13:50.464676
+    INFO:root:Query has been run successfully at 2021-02-06 14:13:50.464676
+    INFO:root:Connection has been closed successfully at 2021-02-06 14:13:50.500709
+
+example of an Error log level : 
+
+    ERROR:root:Incorrect username or password! Error Time : 2021-02-06 14:11:46.179182
