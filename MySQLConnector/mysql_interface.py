@@ -19,7 +19,6 @@ There are 3 states of logging that can be used :
 import logging
 from datetime import datetime
 import mysql.connector
-from mysql.connector import errorcode
 # function to establish a connection to a MySQL Database, returns a connection variable
 def establish_connection(db_user,db_password,db_host,database_schema):
     """ Establishing a connection with a return connection object """
@@ -34,15 +33,11 @@ def establish_connection(db_user,db_password,db_host,database_schema):
                                     host=db_host,
                                     database=database_schema)
         logging.info("Connection has been established at time %s" , datetime.now())
+        return connection
     except mysql.connector.Error as err:
         # error handling for access denied or the database connection error
-        if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-            logging.error("Incorrect username or password! Error Time : %s" , datetime.now())
-        elif err.errno == errorcode.ER_BAD_DB_ERROR:
-            logging.error("Database does not exist! Error Time : %s" , datetime.now())
-        else:
-            logging.error(err)
-    return connection
+        logging.error(err)
+        raise SystemExit from err
 # function to run a query to a MySQL database, returns a cursor variable
 def run_query(connection,query):
     """ Running a Query with a return cursor """
@@ -52,9 +47,10 @@ def run_query(connection,query):
         results = connection.cursor()
         results.execute(query)
         logging.info("Query has been run successfully at %s" , datetime.now())
+        return results
     except mysql.connector.Error as err:
         logging.error(err)
-    return results
+        raise SystemExit from err
 # function to close the provided connection details
 def close_connection(connection):
     """ Closing a provided connection object """
@@ -63,6 +59,7 @@ def close_connection(connection):
         logging.info("Connection has been closed successfully at %s" , datetime.now())
     except mysql.connector.Error as err:
         logging.error(err)
+        raise SystemExit from err
 # establishing log files
 def setup_logging(log_file,log_level):
     """ Setting up logging for the above 3 functions """

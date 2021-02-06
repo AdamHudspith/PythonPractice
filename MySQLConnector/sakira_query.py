@@ -2,7 +2,7 @@ import mysql_interface
 
 # start of the main script
 # establish logging
-mysql_interface.setup_logging('sakira_query.log','DEBUG')
+mysql_interface.setup_logging('sakira_query.log','ERROR')
 # creating the connection
 cnx = mysql_interface.establish_connection('SA','Password','127.0.0.1','sakila')
 # run the query against the connection
